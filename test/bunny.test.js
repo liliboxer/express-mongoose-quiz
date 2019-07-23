@@ -69,20 +69,39 @@ describe('bunny routes', () => {
     });
     return request(app)
       .patch(`/api/v1/bunnies/${bunny._id}`)
-      .send({ age: 5 })
+      .send({ age: 10 })
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          name: 'Chester', 
+          breed: 'mini lop',
+          age: 10,
+          fluffy: true,
+          __v: 0
+        });
+      }); 
+  });
+
+  // delete 
+  it('eletes bunny', async() => {
+    const bunny = await Bunny.create({        
+      name: 'Chester', 
+      breed: 'mini lop',
+      age: 4,
+      fluffy: true 
+    });
+    return request(app)
+      .delete(`/api/v1/bunnies/${bunny._id}`)
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
           __v: 0,
           name: 'Chester', 
           breed: 'mini lop',
-          age: 5,
+          age: 4,
           fluffy: true
         });
       });
   });
-
-  // delete 
-
   
 });
