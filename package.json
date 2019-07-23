@@ -1,0 +1,37 @@
+{
+  "name": "express-mongoose-quiz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "eslint": "^6.1.0",
+    "express": "^4.17.1",
+    "jest": "^24.8.0",
+    "mongoose": "^5.6.6",
+    "nodemon": "^1.19.1",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest --verbose --runInBand",
+    "test:watch": "npm run test -- --watch",
+    "start": "node server.js",
+    "start:watch": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liliboxer/express-mongoose-quiz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liliboxer/express-mongoose-quiz/issues"
+  },
+  "homepage": "https://github.com/liliboxer/express-mongoose-quiz#readme"
+}
