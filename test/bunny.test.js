@@ -20,6 +20,26 @@ describe('bunny routes', () => {
   });
 
   // create
+  it('create a bunny', () => {
+    return request(app)
+      .post('/api/v1/bunnies')
+      .send({ 
+        name: 'Chester', 
+        breed: 'mini lop',
+        age: 4,
+        fluffy: true
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          __v: 0,
+          name: 'Chester', 
+          breed: 'mini lop',
+          age: 4,
+          fluffy: true
+        });
+      });
+  });
 
   // read
 
