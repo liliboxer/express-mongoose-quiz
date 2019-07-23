@@ -60,7 +60,7 @@ describe('bunny routes', () => {
   });
 
   // update 
-  it('PATCH part of bunny', async() => {
+  it('update entire bunny', async() => {
     const bunny = await Bunny.create({        
       name: 'Chester', 
       breed: 'mini lop',
@@ -68,22 +68,27 @@ describe('bunny routes', () => {
       fluffy: true 
     });
     return request(app)
-      .patch(`/api/v1/bunnies/${bunny._id}`)
-      .send({ age: 10 })
+      .put(`/api/v1/bunnies/${bunny._id}`)
+      .send({
+        name: 'Reuben', 
+        breed: 'mini lop',
+        age: 10,
+        fluffy: false 
+      })
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
-          name: 'Chester', 
+          __v: 0,
+          name: 'Reuben', 
           breed: 'mini lop',
           age: 10,
-          fluffy: true,
-          __v: 0
+          fluffy: false 
         });
       }); 
   });
 
   // delete 
-  it('eletes bunny', async() => {
+  it('deletes bunny', async() => {
     const bunny = await Bunny.create({        
       name: 'Chester', 
       breed: 'mini lop',
