@@ -5,6 +5,7 @@ const app = require('../lib/app');
 const connect = require('../lib/utils/connect');
 const mongoose = require('mongoose');
 
+const Bunny = require('../lib/models/Bunny');
 
 describe('bunny routes', () => {
   beforeAll(() => {
@@ -42,6 +43,18 @@ describe('bunny routes', () => {
   });
 
   // read
+  it('gets all bunnies', async() => {
+    const bunnies = JSON.parse(JSON.stringify(await Bunny.create([
+      { name: 'Chester', breed: 'mini lop', age: 4, fluffy: true },
+      { name: 'Reuben', breed: 'jackrabbit', age: 1, fluffy: true },
+      { name: 'Snax', breed: 'lionhead', age: 3, fluffy: false },
+    ])));
+    return request(app)
+      .get('/api/v1/bunnies')
+      .then(res => {
+        expect(res.body).toEqual(bunnies);
+      });
+  });
 
   // update 
 
